@@ -35,6 +35,7 @@
             line-height: 1.7;
             font-weight: 400;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         
         h1, h2, h3, h4 {
@@ -397,20 +398,37 @@
         .about-img {
             flex: 1;
             position: relative;
-            border-radius: 12px;
+            border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 8px solid var(--primary);
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 99, 235, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
         }
         
         .about-img img {
             width: 100%;
-            height: auto;
-            border-radius: 12px;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
         
         .about-img:hover img {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
         
         .about-img::before {
@@ -420,9 +438,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.4));
+            background: linear-gradient(to bottom, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.2));
             z-index: 1;
-            border-radius: 12px;
+            border-radius: 50%;
         }
         
         .skills {
@@ -800,7 +818,36 @@
             transform: translateY(0);
         }
         
+        /* تأثيرات إضافية */
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+        
+        .scale-in.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* تأثيرات للبطاقات */
+        .card-hover-effect {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover-effect:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
         /* التكيف مع الشاشات الصغيرة */
+        @media (max-width: 1200px) {
+            .about-img {
+                width: 350px;
+                height: 350px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 3rem;
@@ -813,6 +860,17 @@
             .about-content {
                 padding-left: 0;
                 margin-top: 3rem;
+                text-align: center;
+            }
+            
+            .about-img {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .skill-header {
+                justify-content: center;
+                gap: 1rem;
             }
         }
         
@@ -868,6 +926,11 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+            
+            .about-img {
+                width: 250px;
+                height: 250px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -881,6 +944,11 @@
             
             .contact-container {
                 grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                width: 220px;
+                height: 220px;
             }
         }
     </style>
@@ -935,7 +1003,7 @@
             </div>
             
             <div class="services-grid">
-                <div class="service-card fade-in">
+                <div class="service-card fade-in card-hover-effect">
                     <div class="service-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
@@ -943,7 +1011,7 @@
                     <p>حل الواجبات، إعداد البحوث، تصميم العروض، الترجمة الأكاديمية وشرح المقررات بطريقة احترافية</p>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card fade-in card-hover-effect">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -951,7 +1019,7 @@
                     <p>تطوير تطبيقات الهاتف، مواقع الويب، برامج سطح المكتب وقواعد البيانات بأحدث التقنيات</p>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card fade-in card-hover-effect">
                     <div class="service-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
@@ -959,7 +1027,7 @@
                     <p>حلول أمنية متكاملة لاختبار الاختراق، تحليل الثغرات وتأمين الأنظمة والشبكات</p>
                 </div>
                 
-                <div class="service-card fade-in">
+                <div class="service-card fade-in card-hover-effect">
                     <div class="service-icon">
                         <i class="fas fa-robot"></i>
                     </div>
@@ -973,13 +1041,13 @@
     <!-- صفحة من أنا -->
     <section class="section about" id="about">
         <div class="container">
-            <div class="about-img fade-in">
+            <div class="about-img scale-in">
                 <img src="https://i.ibb.co/PvPdJKq2/Snapchat-409382715.jpg" alt="المهندس معتز وليد القاضي">
             </div>
             
             <div class="about-content fade-in">
                 <h2>من أنا؟</h2>
-                <p>أنا المهندس معتز وليد القاضي، متخصص في تطوير البرمجيات والأمن السيبراني مع أكثر من 3 سنوات من الخبر   في مجال التقنية. أسعى دائماً لتقديم حلول تقنية مبتكرة تلبي احتياجات العملاء بأعلى معايير الجودة.</p>
+                <p>أنا المهندس معتز وليد القاضي، متخصص في تطوير البرمجيات والأمن السيبراني مع أكثر من 3 سنوات من الخبرة في مجال التقنية. أسعى دائماً لتقديم حلول تقنية مبتكرة تلبي احتياجات العملاء بأعلى معايير الجودة.</p>
                 
                 <h3>المؤهلات العلمية</h3>
                 <ul>
@@ -1052,7 +1120,7 @@
             </div>
             
             <div class="projects-grid">
-                <div class="project-card fade-in" data-category="web">
+                <div class="project-card fade-in card-hover-effect" data-category="web">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="نظام إدارة جامعي">
                     </div>
@@ -1068,7 +1136,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card fade-in" data-category="mobile">
+                <div class="project-card fade-in card-hover-effect" data-category="mobile">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="تطبيق حجز مواعيد">
                     </div>
@@ -1083,7 +1151,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card fade-in" data-category="cyber">
+                <div class="project-card fade-in card-hover-effect" data-category="cyber">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="نظام حماية شبكة">
                     </div>
@@ -1098,7 +1166,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card fade-in" data-category="ai">
+                <div class="project-card fade-in card-hover-effect" data-category="ai">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1677442135136-760c813a743a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="نموذج تصنيف صور">
                     </div>
@@ -1113,7 +1181,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card fade-in" data-category="web">
+                <div class="project-card fade-in card-hover-effect" data-category="web">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="موقع تجارة إلكترونية">
                     </div>
@@ -1129,7 +1197,7 @@
                     </div>
                 </div>
                 
-                <div class="project-card fade-in" data-category="mobile">
+                <div class="project-card fade-in card-hover-effect" data-category="mobile">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="تطبيق إدارة المهام">
                     </div>
@@ -1361,7 +1429,7 @@
         });
         
         // تأثيرات التمرير
-        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeElements = document.querySelectorAll('.fade-in, .scale-in');
         
         function checkScroll() {
             fadeElements.forEach(element => {
@@ -1441,6 +1509,33 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+        
+        // تحميل سريع للصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+        
+        // تأثيرات إضافية للبطاقات
+        document.querySelectorAll('.card-hover-effect').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const x = e.pageX - this.offsetLeft;
+                const y = e.pageY - this.offsetTop;
+                
+                const centerX = this.offsetWidth / 2;
+                const centerY = this.offsetHeight / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                this.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
         });
     </script>
